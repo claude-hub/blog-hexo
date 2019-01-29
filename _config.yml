@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Cloudy
-subtitle: 自留地
+title: CLOUDY
+subtitle: cloudy
 description: Cloudy的自留地
 keywords: blog
 author: Cloudy
@@ -79,3 +79,10 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+# 搜索 // npm install hexo-generator-searchdb --save
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
