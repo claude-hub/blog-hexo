@@ -7,14 +7,14 @@ title: Cloudy
 subtitle:
 description:
 keywords:
-author: John Doe
+author: Cloudy
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
-root: /blog1
+root: /blog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
