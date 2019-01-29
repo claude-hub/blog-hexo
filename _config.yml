@@ -4,9 +4,9 @@
 
 # Site
 title: Cloudy
-subtitle:
-description:
-keywords:
+subtitle: 自留地
+description: Cloudy的自留地
+keywords: blog
 author: Cloudy
 language: zh-Hans
 timezone:
@@ -14,13 +14,13 @@ timezone:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
-root: /blog
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
 source_dir: source
-public_dir: docs
+public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
