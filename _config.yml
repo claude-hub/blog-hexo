@@ -3,19 +3,26 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
+# 博客的名称
 title: Cloudy
+# 根据主题的不同，有的会显示有的不会显示
 subtitle: Cloudy的自留地
+# 主要用于SEO，告诉搜索引擎一个关于站点的简单描述，通常建议在其中包含网站的关键词
 description: Cloudy的自留地
 keywords: blog
 author: Cloudy
 language: zh-Hans
+# 时区，可不填写
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://www.cloudyslife.cn
 root: /
+# 生成的链接的格式。带井号的是默认的格式，带有日期感觉怪怪的，
+# 改成了自己喜欢的格式。规则也比较简单，标签前面要加英文冒号
 permalink: :year/:month/:day/:title/
+# 生成链接中各部分的默认值
 permalink_defaults:
 
 # Directory
@@ -33,12 +40,12 @@ new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
-filename_case: 0
-render_drafts: false
-post_asset_folder: false
-relative_link: false
+filename_case: 0 #把文件名称转换为 (1) 小写或 (2) 大写
+render_drafts: false # 是否显示草稿
+post_asset_folder: false  #是否启动资源文件夹
+relative_link: false #把链接改为与根目录的相对位址
 future: true
-highlight:
+highlight: #代码块的设置，Hexo自带的代码高亮插件
   enable: true
   line_number: true
   auto_detect: false
@@ -100,3 +107,9 @@ server:
   port: 8080
   compress: true
   header: true
+
+feed: # RSS订阅插件
+  type: atom
+  path: atom.xml
+  limit: 0
+plugins: hexo-generate-feed
