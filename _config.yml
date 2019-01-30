@@ -97,6 +97,6 @@ admin:
   deployCommand: "hexo-deploy.bat"
 
 server:
-  port: 4001
+  port: 8080
   compress: true
   header: true
