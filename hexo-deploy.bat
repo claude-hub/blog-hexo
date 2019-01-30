@@ -1,4 +1,4 @@
 git add .
-git commit -m "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+git commit -m "update"
 git push
 hexo clean && hexo deploy
