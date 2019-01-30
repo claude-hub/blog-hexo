@@ -80,6 +80,7 @@ theme: next
 deploy:
   type: git
   repo: https://github.com/cloudyslife/cloudyslife.github.io.git
+  branch: [master]
 
 # 搜索 // npm install hexo-generator-searchdb --save
 search:
@@ -87,3 +88,15 @@ search:
   field: post
   format: html
   limit: 10000
+
+# hexo-admin authentification
+admin:
+  username: cloudy
+  password_hash: $2a$10$r2EiVsXGhliXTYZCAjseKuIsNijUHaQqxi7j1IMPQDsDwPpiVEhZK
+  secret: cloudyslife bolg
+  deployCommand: "hexo-deploy.bat"
+
+server:
+  port: 4001
+  compress: true
+  header: true
