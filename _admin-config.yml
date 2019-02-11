@@ -2,6 +2,7 @@ options:
   lineNumbers: true
   spellcheck: true
   askImageFilename: false
+  imagePath: /images
 editor:
   lineNumbers: true
   inputStyle: contenteditable
