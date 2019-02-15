@@ -1,14 +1,14 @@
 title: PostgreSQL
 tags:
-
   - PostgreSQL
 categories:
   - 数据库
 author: Cloudy
 date: 2019-02-11 17:13:00
+
 ---
 
-### 1. Centos 7安装PostgreSQL
+## 1. Centos 7安装PostgreSQL
 
 [官方安装说明](https://www.postgresql.org/download/linux/redhat/) 
 
@@ -62,13 +62,13 @@ date: 2019-02-11 17:13:00
 
    ```shell
    su postgres //切换用户，执行后提示符会变为 '-bash-4.2$'
-   psql postgres //登录数据库，执行后提示符变为 'postgres=#'
+   psql postgres //登录数据库，执行后提示符变为 'postgres=#' psql -U postgres -p 8998
    ```
 
    创建密码
 
    ```shell
-   postgres=# \password postgres  #给postgres用户设置密码
+   postgres=# \password postgres  #给postgres用户设置密码 
    Enter new password:             #输入用户密码
    Enter it again:                 #再次输入密码
    \q  //退出数据库
@@ -110,11 +110,91 @@ date: 2019-02-11 17:13:00
 
 12. 使用navicat连接数据库
 
-### 2. Docker安装PostgreSQL
+## 2. Docker安装PostgreSQL
 
 ```shell
 docker pull postgres
-docker run --name postgres01 -e POSTGRES_PASSWORD=postgres -p 54321:5432 -d --restart=always postgres
+docker run --name postgres01 -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d --restart=always postgres
 ```
 
-### 3. 备份与恢复
+## 3. 备份与恢复
+
+```shell
+pg_basebackup -F p -D /var/lib/pgsql/11/backups  -v -h 40.73.35.55 -p 8998 -U postgres -W
+Password:
+
+pg_basebackup -R -D /var/lib/pgsql/11/data  -h 40.73.35.55 -p 8998 -U postgres -w
+-R 选项可以自动生成recovery.conf文件
+
+pg_basebackup -h 40.73.35.55 -p 8998  -U postgres -w -D /var/lib/pgsql/11/data -X stream -P
+```
+
+[postgresql 高可用集群搭建资料](https://www.jianshu.com/p/77f07af6ca4b)
+
+[PostgresSQL HA高可用架构实战](http://www.uml.org.cn/zjjs/201605031.asp)
+
+HA 方案
+
+ 	1. 共享存储
+ 	2. drbd
+ 	3. 基于流复制
+
+### 流复制
+
+ - 异步流复制
+
+   ​	异步流复制的中心思想是：主库上提交事务时不需要等待备库接收WAL日志流并写入到备库WAL日志文件时便返回成功，因此异步流复制的TPS会相对同步流复制要高，延迟更低。
+
+   参考博客
+
+    	1. https://www.cnblogs.com/sunshine-long/p/9059695.html
+    	2. https://lihaoquan.me/2018/9/29/postgresql-master-slave-ha.html
+
+   验证是否部署成功
+
+    ~~~shell
+   su - postgres
+   psql -U postgres -p 8998
+   //主服务器
+   postgres=# select pg_is_in_recovery();
+   pg_is_in_recovery
+   -------------------
+   f //f表示主
+   (1 row)
+   //备服务器
+   postgres=# select pg_is_in_recovery();
+   pg_is_in_recovery
+   -------------------
+   t //t表示备
+   (1 row)
+   
+   //主服务器，async表示异步流复制
+   postgres=# select client_addr,application_name,sync_state from pg_stat_replication;
+   
+   client_addr  | sync_state 
+   ---------------+------------
+   139.219.6.177 | async
+   (1 row)
+    ~~~
+
+- 同步流复制
+
+  事务同步
+
+  只需修改master
+
+  ~~~shell
+  vim postgresql.conf
+  synchronous_standby_names = '*'
+  synchronous_commit = on
+  
+  postgres=# select client_addr,application_name,sync_state from pg_stat_replication;
+   client_addr  | application_name | sync_state 
+  ---------------+------------------+------------
+   139.219.6.177 | walreceiver      | sync
+  (1 row)
+  ~~~
+
+  
+
+  
