@@ -8,7 +8,7 @@ date: 2019-02-11 17:13:00
 
 ---
 
-## 1. Centos 7安装PostgreSQL
+###  Centos 7安装PostgreSQL
 
 [官方安装说明](https://www.postgresql.org/download/linux/redhat/) 
 
@@ -110,14 +110,14 @@ date: 2019-02-11 17:13:00
 
 12. 使用navicat连接数据库
 
-## 2. Docker安装PostgreSQL
+### Docker安装PostgreSQL
 
 ```shell
 docker pull postgres
 docker run --name postgres01 -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d --restart=always postgres
 ```
 
-## 3. 备份与恢复
+### 备份与恢复
 
 ```shell
 pg_basebackup -F p -D /var/lib/pgsql/11/backups  -v -h 40.73.35.55 -p 8998 -U postgres -W
@@ -139,7 +139,7 @@ HA 方案
  	2. drbd
  	3. 基于流复制
 
-### 流复制
+#### 流复制
 
  - 异步流复制
 
