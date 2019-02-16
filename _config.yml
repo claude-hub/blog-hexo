@@ -86,7 +86,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/cloudyslife/cloudyslife.github.io.git
+  repo: https://github.com/cloudslife/cloudslife.github.io.git
   branch: [master]
 
 # 搜索 // npm install hexo-generator-searchdb --save
