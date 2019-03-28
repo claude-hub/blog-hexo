@@ -129,3 +129,11 @@ input {
     color: white;
 }
 ```
+
+### input光标
+
+在IE中是没有办法让input的光标改变颜色的，颜色始终与背景颜色相反。
+
+在Firefox和Chrome中，可以设置`color: red`来设置光标的颜色。也可以使用`caret-color: red`。
+
+光标的宽度为1px。
